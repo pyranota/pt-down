@@ -2064,6 +2064,16 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+#log_outer_button {
+  outline: 0px solid blueviolet;
+  border: 0px solid firebrick;
+}
+
+body {
+  outline: 0px;
+  border: 0px;
+}
+
 @media screen {
 }
 
@@ -2139,7 +2149,7 @@ input {
 }
 
 .log-trace {
-  background-color: silver
+  background-color: slategray
 }
 
 .log-warn {

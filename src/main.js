@@ -83,9 +83,12 @@ function add_log(level, text) {
 
     appendStringAsNodes(el, `<span class="log-warn log">WARN</span><span> ${text} <br> </span>`)
   }
+
+
   if (level == "ERROR") {
 
     appendStringAsNodes(el, `<span class="log-err log">ERROR</span><span> ${text} <br> </span>`)
+    show_alert("err");
   }
 }
 
@@ -96,9 +99,9 @@ async function echo(val) {
 }
 
 async function run() {
-  let logs = await invoke("process", { token: token, instance: inst });
+  await invoke("process", { token: token, instance: inst });
 
-  console.log(logs);
+
 }
 
 
@@ -205,12 +208,6 @@ if (token != '') {
   input.value = token;
 
 }
-
-await invoke("echo", { val: token });
-
-await invoke("echo", { val: "hi" });
-
-
 
 
 

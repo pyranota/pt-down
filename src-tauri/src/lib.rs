@@ -1,4 +1,4 @@
-use log::{info, LevelFilter, SetLoggerError};
+use log::{info, Level, LevelFilter, SetLoggerError};
 
 use static_init::dynamic;
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
@@ -12,7 +12,10 @@ async fn process(token: String, instance: String) {
 
     match bot.run().await {
         Ok(()) => {}
-        Err(e) => log::error!("{e}"),
+        Err(e) => {
+            dbg!("Error here");
+            log::error!("{e}");
+        }
     }
 }
 
@@ -49,7 +52,15 @@ impl log::Log for Logger {
     fn log(&self, record: &log::Record) {
         if let Some(window) = WINDOW_OP.read().as_ref() {
             if let Some(module) = record.module_path() {
-                if module != "pt_down_core" {
+                // if module != "jni::wrapper::jnienv" {
+                //     dbg!(record.level());
+                // }
+
+                if record.level() == Level::Error {
+                    dbg!(module);
+                }
+
+                if module != "pt_down_core" && module != "pt-down" {
                     return;
                 }
                 let payload = LogPayload {
