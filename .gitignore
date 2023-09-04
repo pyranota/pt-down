@@ -7,6 +7,8 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+cargo.lock
+package-lock.json
 node_modules
 dist
 dist-ssr
@@ -22,3 +24,23 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.cargo
+
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+
+target/
+
+# Local configuration file (sdk path, etc)
+local.properties
