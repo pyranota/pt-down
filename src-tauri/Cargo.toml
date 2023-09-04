@@ -1,0 +1,31 @@
+[package]
+name = "pt-down"
+version = "1.0.0"
+description = "A Tauri App"
+authors = ["gaast"]
+license = ""
+repository = ""
+edition = "2021"
+
+[lib]
+name = "pt_down_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "2.0.0-alpha", features = [] }
+
+[dependencies]
+tauri = { version = "2.0.0-alpha", features = ["tray-icon"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+pt_down_core = "1.0.1"
+anyhow = "1.0.75"
+log = "0.4.20"
+static_init = "1.0.3"
+
+[features]
+# this feature is used for production builds or when `devPath` points to the filesystem
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]

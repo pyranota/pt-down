@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" user-scalable=0 />
+  <link href="output.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+  <title>pt-down</title>
+  <script type="module" src="/main.js" defer></script>
+</head>
+
+<body id="iau9" style="
+display: flex;
+flex-direction: column;
+ justify-content: space-between; 
+ position: absolute;
+ width: 100%;
+align-items: center;
+height: 100%;
+padding: 10px;
+
+">
+  <div style="display: flex; justify-content: space-between; border: 0px solid aliceblue; width: 100%; padding: 6px">
+    <!-- <button class="btn" onclick="my_modal_2.showModal()" style="right: 10px; top: 10px;">Setup</button> -->
+    <img src="assets/cmd.png" onclick="{
+      log_modal.showModal();
+      view.playSoundEffect(SoundEffectConstants.CLICK);}" class="navbar-item">
+
+    <img id="setting" src="assets/settings.png" onclick="{
+      my_modal_2.showModal()
+    }" class="navbar-item">
+  </div>
+
+
+
+  <dialog id="log_modal" class="modal modal-top sm:modal-middle" style="height: 90%; position: absolute;"
+    tabindex="500">
+    <form method="dialog" class="modal-box">
+      <input type="hidden" autofocus="true" />
+      <h3 class="font-bold text-lg">Logs</h3>
+
+      <!-- <select id="log-level" class="select select-bordered select-xs w-full max-w-xs">
+        <option>Error</option>
+        <option>Warn</option>
+        <option selected>Info</option>
+        <option>Trace</option>
+      </select> -->
+
+      <div class="inline-block rounded-md rounded-full" id="log-box"
+        style="height: 50%; overflow-y: scroll; max-height: 40vh; width: 100%;">
+      </div>
+
+
+
+
+
+
+
+
+    </form>
+    <form method="dialog" class="modal-backdrop">
+      <button>close</button>
+    </form>
+  </dialog>
+
+  <dialog id="my_modal_2" class="modal modal-top sm:modal-middle">
+    <form method="dialog" class="modal-box" tabindex="500">
+
+      <h3 class="font-bold text-lg">Settings</h3>
+      <p class="py-4">Telegram Bot Api Token:</p>
+
+      <input type="hidden" autofocus="true" />
+
+      <input id="tk" type="text" placeholder="0123456789:AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqR"
+        class="input input-bordered w-full max-w-xs" />
+
+      <p class="py-4">Proxitok Instance:</p>
+
+      <input id="inst" type="text" placeholder="proxitok.pussthecat.org (default)"
+        class="input input-bordered w-full max-w-xs" />
+
+      <p class="py-4">Theme:</p>
+
+      <div class="join">
+        <input class="join-item btn theme_btn" onclick="{
+          document.documentElement.setAttribute('data-theme', 'dark');
+          window.localStorage.setItem('theme', 'dark');
+          }" type="radio" name="options" aria-label="Dark" />
+        <input class="join-item btn theme_btn" onclick="{
+          document.documentElement.setAttribute('data-theme', 'light');
+          window.localStorage.setItem('theme', 'light');
+          }" type="radio" name="options" aria-label="Light" />
+        <input class="join-item btn theme_btn" onclick="{
+          document.documentElement.removeAttribute('data-theme');
+          window.localStorage.setItem('theme', 'system');
+          }" type="radio" name="options" aria-label="System" checked />
+      </div>
+
+
+
+    </form>
+    <form method="dialog" class="modal-backdrop">
+      <button>close</button>
+    </form>
+  </dialog>
+
+
+
+  <div style="display: flex; align-items: flex-end;">
+    <h1 class="text-3xl font-bold" style="
+      font-weight: bolder;
+      color:rgb(122, 122, 122, 0.5);
+      font-size: 35px;
+      ">
+      pt-down
+    </h1>
+    <div style="height: 70px;">
+      <img src="assets/download.svg" id="downlogo" alt="" style="
+      padding-left: 10px;
+      width: 40px;
+      position:relative;
+      display:block;
+    ">
+    </div>
+
+  </div>
+
+
+
+  <button id="main_button" type="button" class="btn btn-wide shadow-black
+btn-active btn-primary decoration-red" style="top: 50%">Start</button>
+
+
+  <div style="
+    position: absolute; 
+    display: flex; 
+    flex-direction: 
+    column; bottom: 1%; 
+    padding: 10px; 
+    justify-content: space-between;
+    ">
+
+    <div class="alert alert-error" onclick="{
+      document.getElementById('err').style.display = 'none';
+      
+      }" id="err" style="flex-direction: row; display: none;">
+      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <span>Error! Something went wrong.</span>
+      <button class="btn btn-sm" onclick="{
+        log_modal.showModal();
+        document.getElementById('err').style.display = 'none';
+        
+        
+        }">Logs</button>
+    </div>
+
+    <div class="alert alert-warning" id="warn" style="margin-top: 10px; display: none;">
+      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+      </svg>
+      <span>You should set it up first!</span>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- 
+  <progress class="progress w-56" value="55" max="100" style="position: absolute; left: 24%; bottom: 55%;"></progress> -->
+
+  <!-- Open the modal using ID.showModal() method -->
+
+
+  <span class="loading loading-infinity loading-lg" , id="loading-infinity"></span>
+
+
+
+
+
+  <h3 class="font-bold text-lg" style="color: rgb(122, 122, 122); bottom: 20px; text-align: center;">Because
+    privacy
+    matters</h3>
+
+
+
+</body>
+
+</html>
