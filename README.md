@@ -20,6 +20,7 @@ It uses proxitok, you will never be using tiktok api directly.
 5. Send tiktok link
 6. Go to app and click `Start`
 > Dont clear the app from RAM until process is done!
+
 > App cant see if token is invalid, make sure you are using the correct one.
 ### Building
 Read `tauri@alpha` build guide.
