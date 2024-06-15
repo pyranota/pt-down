@@ -3,7 +3,7 @@
 Use your telegram bot for downloading tiktoks.
 It uses proxitok, you will never be using tiktok api directly.
 
->
+> Code is not the best quality since I dont write code in js and project was written in 3 days.
 
 ### Features
 - Private (No connection to tiktok)
